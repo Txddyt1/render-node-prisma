@@ -41,6 +41,14 @@ app.get('/users', async (req, res) => {
   }
 });
 
+app.get('/health', async (req, res) => {
+  try {
+    res.status(200).json({ status: 'OK', uptime : process.uptime() });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve health status' });
+  }
+});
+
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
 });
